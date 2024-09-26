@@ -40,7 +40,7 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
 
     private static final String CONTENT_SCHEME = "content";
 
-    private static final String WRITE_AND_TRUNCATE = "wt";
+    private static final String READ_WRITE_AND_TRUNCATE = "rwt";
 
     private final WeakReference<Context> mContext;
 
@@ -215,7 +215,7 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
         OutputStream outputStream = null;
         ByteArrayOutputStream outStream = null;
         try {
-            outputStream = context.getContentResolver().openOutputStream(mImageOutputUri, WRITE_AND_TRUNCATE);
+            outputStream = context.getContentResolver().openOutputStream(mImageOutputUri, READ_WRITE_AND_TRUNCATE);
             outStream = new ByteArrayOutputStream();
             croppedBitmap.compress(mCompressFormat, mCompressQuality, outStream);
             outputStream.write(outStream.toByteArray());
